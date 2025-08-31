@@ -77,7 +77,7 @@ export default function Hero() {
         ),
         cta: { label: "SUBSCRIBE NOW", href: "#subscribe" },
         chip: "$12 • 2 Years",
-        image: { src: "/keydplus.png", alt: "KaydPlus SIM", pricePill: "$12" },
+        image: { src: "/keydPlus.png", alt: "KaydPlus SIM", pricePill: "$12" },
       },
       {
         id: "afordabable",
@@ -111,7 +111,7 @@ export default function Hero() {
         ),
         cta: { label: "OPEN EVC PLUS", href: "#evc" },
         chip: "Secure • Fast",
-        image: { src: "/keydplus.png", alt: "EVC Plus" },
+        image: { src: "/keydPlus.png", alt: "EVC Plus" },
       },
     ],
     []
