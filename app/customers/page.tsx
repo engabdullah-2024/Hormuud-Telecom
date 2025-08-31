@@ -1,23 +1,15 @@
 // app/customers/page.tsx
 "use client";
 
-import { MotionConfig, motion } from "framer-motion";
+import { MotionConfig, motion, cubicBezier } from "framer-motion"; // ⬅️ add cubicBezier
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  MessageSquareText,
-  Globe2,
-  UserRound,
-  Hash,
-} from "lucide-react";
+import { MessageSquareText, Globe2, UserRound, Hash } from "lucide-react";
 
 /**
  * Customers — Favourite business products
- * - Pixel-consistent with the reference: centered heading + subtext,
- *   followed by four bold colored cards.
- * - Accessible, responsive, and motion-reduced friendly.
  */
 
-const EASE: number[] = [0.16, 1, 0.3, 1];
+const EASE = cubicBezier(0.16, 1, 0.3, 1); // ⬅️ typed easing function
 const fade = (y = 20, delay = 0) => ({
   hidden: { opacity: 0, y },
   show: {
@@ -31,7 +23,6 @@ type BizItem = {
   title: string;
   copy: string;
   icon: React.ReactNode;
-  // Tailwind classes for the colored card background and text contrast
   bg: string;
   ring: string;
 };
@@ -125,7 +116,6 @@ function BizCard({ item }: { item: BizItem }) {
       ].join(" ")}
     >
       <CardContent className="p-6">
-        {/* Icon chip */}
         <div className="mb-4 inline-flex items-center justify-center rounded-md border border-white/50 bg-white/10 p-2">
           <span aria-hidden className="text-white">{item.icon}</span>
         </div>
@@ -135,7 +125,6 @@ function BizCard({ item }: { item: BizItem }) {
           {item.copy}
         </p>
 
-        {/* Subtle bottom glow on hover */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 bottom-0 h-10 translate-y-6 bg-white/0 opacity-0 blur-2xl transition-all duration-300 group-hover:translate-y-0 group-hover:bg-white/10 group-hover:opacity-100"
