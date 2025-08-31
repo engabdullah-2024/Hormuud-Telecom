@@ -188,12 +188,25 @@ export default function Header() {
 
           {/* WHO WE ARE / MEDIA */}
           <NavDropdown label="Who We Are">
-            <NavList items={[["About Hormuud", "#"], ["Social Responsibility", "#"], ["Hormuud Foundation", "#"],["Jobs", "#"], ["Terms and Conditions", "#"]]} />
+            <NavList
+              items={[
+                ["About Hormuud", "#"],
+                ["Social Responsibility", "#"],
+                ["Hormuud Foundation", "#"],
+                ["Jobs", "#"],
+                ["Terms and Conditions", "#"],
+              ]}
+            />
           </NavDropdown>
 
           <NavDropdown label="Media">
             <NavList items={[["Press Release", "#"], ["Blog", "#"], ["Events & Campaigns", "#"]]} />
           </NavDropdown>
+
+          {/* Desktop Dev link (already present) */}
+          <Link href="/developer" className="text-sm text-zinc-900 hover:text-emerald-600">
+            Dev
+          </Link>
 
           <Link href="#contact" className="text-sm text-zinc-900 hover:text-emerald-600">
             Contact Us
@@ -297,6 +310,15 @@ export default function Header() {
                       </AccordionContent>
                     </AccordionItem>
                   </Accordion>
+
+                  {/* ✅ New Dev link for mobile */}
+                  <li className="mt-1">
+                    <SheetClose asChild>
+                      <Link href="/developer" className="block rounded-md px-3 py-2 text-sm text-zinc-900 hover:bg-zinc-50">
+                        Dev
+                      </Link>
+                    </SheetClose>
+                  </li>
 
                   <li className="mt-1">
                     <SheetClose asChild>
