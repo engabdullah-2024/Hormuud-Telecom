@@ -2,7 +2,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { MotionConfig, motion, AnimatePresence } from "framer-motion";
+import { MotionConfig, motion, AnimatePresence, cubicBezier } from "framer-motion"; // ⬅️ add cubicBezier
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -28,7 +28,8 @@ import { Card, CardContent } from "@/components/ui/card";
  * Replace /keydplus.png and /anfac.avif with your assets.
  */
 
-const EASE: number[] = [0.16, 1, 0.3, 1];
+// ⬅️ typed easing function (fixes TS error)
+const EASE = cubicBezier(0.16, 1, 0.3, 1);
 
 const fade = (y = 20, delay = 0) => ({
   hidden: { opacity: 0, y },
@@ -110,7 +111,6 @@ export default function Hero() {
         ),
         cta: { label: "OPEN EVC PLUS", href: "#evc" },
         chip: "Secure • Fast",
-        // Use your own illustration here if available
         image: { src: "/keydplus.png", alt: "EVC Plus" },
       },
     ],
@@ -134,7 +134,6 @@ export default function Hero() {
   const next = useCallback(() => goTo(index + 1, 1), [goTo, index]);
   const prev = useCallback(() => goTo(index - 1, -1), [goTo, index]);
 
-  // Optional autoplay (pause on hover/focus if desired)
   useEffect(() => {
     const t = setInterval(() => goTo(index + 1, 1), 8000);
     return () => clearInterval(t);
