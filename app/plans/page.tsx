@@ -1,7 +1,7 @@
 // app/plans/page.tsx
 "use client";
 
-import { MotionConfig, motion } from "framer-motion";
+import { MotionConfig, motion, cubicBezier } from "framer-motion"; // ✅ add cubicBezier
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, Circle } from "lucide-react";
@@ -15,7 +15,9 @@ type Plan = {
   bestDeal?: boolean;      // adds the green top ribbon
 };
 
-const EASE: number[] = [0.16, 1, 0.3, 1];
+// ❌ number[] -> ✅ typed easing function (fixes TS error without visual change)
+const EASE = cubicBezier(0.16, 1, 0.3, 1);
+
 const fade = (y = 18, delay = 0) => ({
   hidden: { opacity: 0, y },
   show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: EASE, delay } },
