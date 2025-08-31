@@ -1,7 +1,7 @@
 // app/_components/Footer.tsx
 "use client";
 
-import { MotionConfig, motion } from "framer-motion";
+import { MotionConfig, motion, cubicBezier } from "framer-motion"; // ⬅️ add cubicBezier
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -14,10 +14,16 @@ import {
   Instagram,
 } from "lucide-react";
 
-const EASE: number[] = [0.16, 1, 0.3, 1];
+// ⬅️ typed easing function instead of number[]
+const EASE = cubicBezier(0.16, 1, 0.3, 1);
+
 const fade = (y = 16, delay = 0) => ({
   hidden: { opacity: 0, y },
-  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: EASE, delay } },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: EASE, delay },
+  },
 });
 
 export default function Footer() {
@@ -35,7 +41,6 @@ export default function Footer() {
             className="md:col-span-3"
           >
             <Link href="/" className="inline-flex items-center gap-3">
-              {/* Replace with your logo asset */}
               <Image
                 src="/Hormuud.svg"
                 alt="Hormuud Telecom"
@@ -184,7 +189,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Floating chat button (optional, matches screenshot mood) */}
+        {/* Floating chat button */}
         <button
           aria-label="Chat with us"
           className="fixed bottom-5 right-5 z-30 inline-flex items-center gap-2 rounded-full bg-emerald-600 px-4 py-2 text-sm font-medium text-white shadow-lg transition hover:bg-emerald-700"
@@ -220,10 +225,7 @@ function FooterCol({
       <ul className="mt-4 space-y-3 text-sm">
         {items.map(([label, href]) => (
           <li key={label}>
-            <Link
-              href={href}
-              className="text-zinc-300 transition hover:text-white"
-            >
+            <Link href={href} className="text-zinc-300 transition hover:text-white">
               {label}
             </Link>
           </li>
